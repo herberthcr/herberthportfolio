@@ -1,0 +1,330 @@
+{
+  "personalInfo": {
+    "name": "Herberth Castro",
+    "title": "Full Stack Developer & Product Leader",
+    "email": "herberth.castro@gmail.com",
+    "phone": "+506 88372454",
+    "location": "Costa Rica",
+    "summary": "Seasoned Software Developer and Product Leader with 20+ years of experience designing and delivering scalable web, game, and enterprise applications for global companies.\nStrong technical background in C#, React, Angular, Node.js, TypeScript and SQL databases combined with proven expertise in product management, UX design, and agile team leadership.\nI excel at bridging the gap between creative vision and technical execution, leading projects from concept to deployment in remote, multicultural environments.\n\nKey strengths: Product vision, architecture design, team mentoring, creative problem solving, and full-stack development.",
+    "social": {
+      "linkedin": "https://www.linkedin.com/in/herberth-castro-b8b66814/",
+      "github": "https://github.com/herberthcr",
+      "website": "https://herberthcastro.com",
+      "portfolio": "https://www.behance.net/gallery/224453817/Games-Development-Marketing"
+    }
+  },
+  "experience": [
+    {
+      "id": "exp1",
+      "title": "Head of Product / Lead Developer",
+      "company": "Vivo Gaming",
+      "location": "Remote",
+      "startDate": "Nov 2021",
+      "endDate": "Sep 2024",
+      "website": "vivogaming.com",
+      "technologies": [
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "Node.js",
+        "PostgreSQL",
+        "Unreal Engine",
+        "RXDB",
+        "Figma",
+        "Adobe Suite",
+        "AWS",
+        "Power BI"
+      ],
+      "tools": [
+        "Jira",
+        "Figma",
+        "Confluence",
+        "Scrum"
+      ],
+      "description": [
+        "Led product development for multiple live-gaming platforms (UI, streaming systems, 3D chroma studios, back-office tools).",
+        "Spearheaded a full facelift of all HTML5 products, modernizing UX and performance.",
+        "Built a web-based analytics tool in React for monitoring streaming KPIs and usage.",
+        "Oversaw cross-functional teams and product roadmaps across several studio locations."
+      ]
+    },
+    {
+      "id": "exp2",
+      "title": "Lead / Senior Developer",
+      "company": "Avantica / Encora",
+      "location": "Remote",
+      "startDate": "Aug 2018",
+      "endDate": "Nov 2021",
+      "website": "encora.com",
+      "technologies": [
+        "C#",
+        "Azure",
+        "Angular",
+        "TypeScript",
+        "SQL Server",
+        "OData",
+        "Web API",
+        "Azure Service Fabric",
+        "Entity Framework",
+        "Power BI"
+      ],
+      "tools": [],
+      "description": [
+        "Served as Lead Developer for Project: ECOM Agro-Industrial (Switzerland), a multinational trading company (coffee, cocoa, cotton) with 40+ offices worldwide. within international Agile teams for large-scale enterprise applications. ",
+        "Led the front-end architecture using Angular, ensuring component reusability, scalability, and performance optimization across multiple projects. ",
+        "Collaborated directly with product owners and solution architects to define UI/UX flows and API integrations.",
+        "Designed and implemented the SMS Web and Android Application, a global system for collecting and distributing agricultural data between technicians, farmers, and crops in 35+ countries.",
+        "Integrated OData and Web API back-ends for dynamic grid views and large dataset pagination on a C#, .NetCore backend.",
+        "Implemented real-time notifications and offline sync logic using Azure Service Fabric.",
+        "Conducted code reviews, mentoring, and front-end training for new developers."
+      ]
+    },
+    {
+      "id": "exp3",
+      "title": "Senior Creative Engineer",
+      "company": "Tree Interactive",
+      "location": "Costa Rica",
+      "startDate": "May 2017",
+      "endDate": "Jul 2018",
+      "website": "treeinteractivecr.com",
+      "technologies": [
+        "React",
+        "C#",
+        "AWS Lambda",
+        "TypeScript",
+        "Three.js",
+        "SQL",
+        "PostgreSQL",
+        "AWS"
+      ],
+      "tools": [],
+      "description": [
+        "Developed SteelSeries Aim Master, a 3D web-based FPS game using React, Three.js, and .NET.",
+        "Designed game logic, UI, and reward systems integrated with AWS services."
+      ]
+    },
+    {
+      "id": "exp4",
+      "title": "Senior Developer",
+      "company": "Aim Consulting",
+      "location": "Seattle, WA",
+      "startDate": "Jan 2016",
+      "endDate": "Apr 2017",
+      "website": "aimconsulting.com",
+      "technologies": [
+        "C#",
+        "C++",
+        "React",
+        "Azure Functions",
+        "AWS Lambda",
+        "SQL",
+        "RabbitMQ",
+        "Angular",
+        "Azure"
+      ],
+      "tools": [],
+      "description": [
+        "Built LFO Calculator and TDC Bikes apps for the University of Washington and Seattle County.",
+        "Created an Outlook Add-in integrating Pipeline Deals API and SharePoint.",
+        "Developed Sales & Delivery Tracker, an internal project management and cost control tool."
+      ]
+    },
+    {
+      "id": "exp5",
+      "title": "Lead Software Developer",
+      "company": "Wells Fargo / Intertec",
+      "location": "Costa Rica",
+      "startDate": "Jun 2014",
+      "endDate": "Jan 2016",
+      "website": "",
+      "technologies": [
+        "ASP.NET MVC",
+        "C#",
+        "Entity Framework",
+        "SQL Server",
+        "JavaScript",
+        "jQuery"
+      ],
+      "tools": [],
+      "description": [
+        "Worked on project: Contract Management System for Wells Fargo DSSG an enterprise web application designed to track, calculate, and manage lease agreements for more than 10,000 ATM sites across the United States. The system automated rent calculations and contract renewals, integrating complex business logic and financial compliance requirements.",
+        "Led the full-cycle development of the Contract Management System, from requirements gathering and system design to deployment and maintenance.",
+        "Designed and implemented automated rent and contract renewal modules, reducing manual errors and significantly improving process efficiency.",
+        "Created dynamic reports and dashboards using SQL Server Reporting Services (SSRS) and optimized stored procedures for faster data retrieval.",
+        "Coordinated closely with QA teams, business analysts, and stakeholders to ensure deliverables met corporate standards and compliance policies.",
+        "Ensured adherence to financial security and compliance protocols throughout development."
+      ]
+    },
+    {
+      "id": "exp6",
+      "title": "Senior Software Engineer",
+      "company": "BoszDigital / Prodigious",
+      "location": "Costa Rica",
+      "startDate": "Feb 2013",
+      "endDate": "Jun 2014",
+      "website": "",
+      "technologies": [
+        "ASP.NET",
+        "C#",
+        "SQL Server",
+        "JavaScript",
+        "Web Services",
+        "Azure",
+        "Entity Framework"
+      ],
+      "tools": [],
+      "description": [
+        "Project: BrandTracker (Leo Burnett / Coca-Cola)",
+        "Developed BrandTracker 3, a marketing campaign management platform for Coca-Cola and Fanta.",
+        "Implemented web service APIs for campaign analytics and data visualization."
+      ]
+    },
+    {
+      "id": "exp7",
+      "title": "Senior Developer",
+      "company": "Axelerate / Semdrive",
+      "location": "Costa Rica",
+      "startDate": "May 2009",
+      "endDate": "Feb 2013",
+      "website": "",
+      "technologies": [
+        "C#",
+        "ASP.NET",
+        "JavaScript",
+        "SQL Server",
+        "AWS",
+        "AngularJS",
+        "Azure"
+      ],
+      "tools": [],
+      "description": [
+        "Developed Bing Maps Mobile Framework for Microsoft (Windows Mobile 6.x).",
+        "Created SEO Report Tool for Microsoft's Skyrocket program.",
+        "Built AWS Web Manager, a tool for scheduling EC2 events (Start/Stop/Restart)."
+      ]
+    },
+    {
+      "id": "exp8",
+      "title": "Developer & Game Designer",
+      "company": "Fair Play Labs",
+      "location": "Costa Rica",
+      "startDate": "Nov 2004",
+      "endDate": "Mar 2009",
+      "website": "",
+      "technologies": [
+        "C++",
+        "Game Development",
+        "GBA",
+        "Nintendo DS",
+        "C#"
+      ],
+      "tools": [],
+      "description": [
+        "Designed and developed Game Studio in C#, a proprietary engine for GBA/Nintendo DS.",
+        "Created Ecovolution, an educational RPG promoting environmental awareness.",
+        "Contributed to multiple outsourced game projects for Digital Blue."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "proj1759797478690",
+      "name": "Magic Paws",
+      "year": "2025",
+      "description": "In this enchanting world, magical animals use love, light, and kindness to help children grow, heal, and learn. With songs, magical stories, and fun adventures, they teach empathy, curiosity, teamwork, and joy — one paw at a time.",
+      "technologies": [
+        "ChatGPT",
+        "Sora",
+        "Veo3",
+        "Suno"
+      ],
+      "link": "https://magicpawsmusic.com/en",
+      "type": "Web Development"
+    },
+    {
+      "id": "proj1",
+      "name": "Ocean Speak",
+      "year": "2024 – Present",
+      "description": "Interactive speech-based underwater web game for children.",
+      "technologies": [
+        "TypeScript",
+        "React",
+        "Phaser 3",
+        "Socket.io",
+        "Web Speech API"
+      ],
+      "link": "https://herberthcr.itch.io/ocean-speak",
+      "type": "Game Development"
+    }
+  ],
+  "education": [
+    {
+      "id": "edu1",
+      "degree": "Software Engineering",
+      "institution": "Cenfotec / Universidad Latina",
+      "year": "2004–2008",
+      "location": "Costa Rica"
+    },
+    {
+      "id": "edu2",
+      "degree": "Software Development Specialist",
+      "institution": "Cenfotec",
+      "year": "2002–2004",
+      "location": "Costa Rica"
+    },
+    {
+      "id": "edu3",
+      "degree": "Computer Science",
+      "institution": "Universidad de Costa Rica",
+      "year": "2000–2002",
+      "location": "Costa Rica"
+    }
+  ],
+  "languages": [
+    {
+      "language": "Spanish",
+      "proficiency": "Native"
+    },
+    {
+      "language": "English",
+      "proficiency": "Advanced"
+    }
+  ],
+  "skills": {
+    "programming": [
+      "C#",
+      ".NET",
+      "TypeScript",
+      "JavaScript",
+      "React",
+      "Node.js",
+      "SQL",
+      "PostgreSQL",
+      "Azure",
+      "AWS",
+      "Angular",
+      "NextJs",
+      "Cursor",
+      "DevOps",
+      "QA"
+    ],
+    "gameAndCreativeTech": [
+      "Phaser",
+      "Three.js",
+      "Unreal Engine",
+      "Unity",
+      "ChatGPT",
+      "Adobe Suite",
+      "Da Vinci Resolve"
+    ],
+    "productAndManagement": [
+      "Agile/Scrum",
+      "Jira",
+      "Figma",
+      "Confluence",
+      "Product Roadmapping",
+      "Team Leadership",
+      "Notion"
+    ]
+  }
+}
