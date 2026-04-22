@@ -541,6 +541,14 @@ function FeaturedProject({ project, t }: { project: Project; t: (typeof UI)[Lang
       </div>
       <div>
         <div className="proj-visual featured">
+          {project.link && (
+            <iframe
+              src={project.link}
+              loading="lazy"
+              title={`${project.name} live preview`}
+              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0, background: 'var(--bg-elev)' }}
+            />
+          )}
           <span className="label">{project.name.toLowerCase()}.preview</span>
         </div>
         <h3>
