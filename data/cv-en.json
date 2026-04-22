@@ -5,7 +5,8 @@
     "email": "herberth.castro@gmail.com",
     "phone": "+506 88372454",
     "location": "Costa Rica",
-    "summary": "Seasoned Software Developer and Product Leader with 20+ years of experience designing and delivering scalable web, game, and enterprise applications for global companies.\nStrong technical background in C#, React, Angular, Node.js, TypeScript and SQL databases combined with proven expertise in product management, UX design, and agile team leadership.\nI excel at bridging the gap between creative vision and technical execution, leading projects from concept to deployment in remote, multicultural environments.\n\nKey strengths: Product vision, architecture design, team mentoring, creative problem solving, and full-stack development.",
+    "tagline": "Twenty-two years building software, from live-service games to enterprise systems.",
+    "summary": "I lead full-stack product teams and still write production code. Over twenty-two years I've shipped SaaS platforms, live-service games, and creative tools for studios across three continents. I care about taste, velocity, and building systems the user never has to think about.\n\nI bridge creative vision and technical execution, leading projects from concept to launch in remote, multicultural environments.\n\nKey strengths: product vision, architecture design, team mentoring, creative problem solving, and full-stack development.",
     "social": {
       "linkedin": "https://www.linkedin.com/in/herberth-castro-b8b66814/",
       "github": "https://github.com/herberthcr",
@@ -14,6 +15,35 @@
     }
   },
   "experience": [
+    {
+      "id": "exp_freelance",
+      "title": "Independent Developer / Product Consultant",
+      "company": "Freelance",
+      "location": "Costa Rica · Remote",
+      "startDate": "Oct 2024",
+      "endDate": "Present",
+      "website": "cifracr.com",
+      "technologies": [
+        "Next.js",
+        "TypeScript",
+        "React",
+        "Node.js",
+        "PostgreSQL",
+        "Claude Code",
+        "OpenAI",
+        "AI / LLM integrations"
+      ],
+      "tools": [],
+      "description": [
+        "Designing, building, and shipping web products end to end: product, design, engineering, and ops.",
+        "Full-stack developer and solution architect on Región Gamer at my studio, Insert Coin, for The Road Tech. A multi-country event-management platform with gamification; first deployment at MegaCon Costa Rica, May 2026.",
+        "Personal products: Cifra (cifracr.com) and TwinSoulMatch, both in active development and approaching launch.",
+        "Client engagement with a UK-based founder building SiyaChange, an ongoing collaboration with equity participation.",
+        "Senior developer / contractor for Technical Toolboxes (technicaltoolboxes.com), a pipeline-industry SaaS platform used by 19 of the top 20 North American pipeline operators.",
+        "Software and product consulting for Costa Rican government institutions, including MINAE and GOAP.",
+        "Deep hands-on work with modern AI tooling (Claude Code, ChatGPT, generative models) integrated into product workflows."
+      ]
+    },
     {
       "id": "exp1",
       "title": "Head of Product / Lead Developer",
@@ -43,6 +73,7 @@
       ],
       "description": [
         "Led product development for multiple live-gaming platforms (UI, streaming systems, 3D chroma studios, back-office tools).",
+        "Shipped live-gaming products into non-traditional markets including Thailand, China, and India, alongside established markets in Europe and the United States.",
         "Spearheaded a full facelift of all HTML5 products, modernizing UX and performance.",
         "Built a web-based analytics tool in React for monitoring streaming KPIs and usage.",
         "Oversaw cross-functional teams and product roadmaps across several studio locations."
@@ -70,11 +101,11 @@
       ],
       "tools": [],
       "description": [
-        "Served as Lead Developer for Project: ECOM Agro-Industrial (Switzerland), a multinational trading company (coffee, cocoa, cotton) with 40+ offices worldwide. within international Agile teams for large-scale enterprise applications. ",
-        "Led the front-end architecture using Angular, ensuring component reusability, scalability, and performance optimization across multiple projects. ",
+        "Served as Lead Developer for ECOM Agro-Industrial (Switzerland), a multinational trading company (coffee, cocoa, cotton) with 40+ offices worldwide — working within international Agile teams on large-scale enterprise applications.",
+        "Led the front-end architecture using Angular, ensuring component reusability, scalability, and performance optimization across multiple projects.",
         "Collaborated directly with product owners and solution architects to define UI/UX flows and API integrations.",
-        "Designed and implemented the SMS Web and Android Application, a global system for collecting and distributing agricultural data between technicians, farmers, and crops in 35+ countries.",
-        "Integrated OData and Web API back-ends for dynamic grid views and large dataset pagination on a C#, .NetCore backend.",
+        "Designed and implemented the SMS Web and Android application, a global system for collecting and distributing agricultural data between technicians, farmers, and crops in 35+ countries.",
+        "Integrated OData and Web API back-ends for dynamic grid views and large dataset pagination on a C# / .NET Core backend.",
         "Implemented real-time notifications and offline sync logic using Azure Service Fabric.",
         "Conducted code reviews, mentoring, and front-end training for new developers."
       ]
@@ -147,8 +178,7 @@
       ],
       "tools": [],
       "description": [
-        "Worked on project: Contract Management System for Wells Fargo DSSG an enterprise web application designed to track, calculate, and manage lease agreements for more than 10,000 ATM sites across the United States. The system automated rent calculations and contract renewals, integrating complex business logic and financial compliance requirements.",
-        "Led the full-cycle development of the Contract Management System, from requirements gathering and system design to deployment and maintenance.",
+        "Led the full-cycle development of the Contract Management System for Wells Fargo DSSG — an enterprise web application to track, calculate, and manage lease agreements for 10,000+ ATM sites across the United States.",
         "Designed and implemented automated rent and contract renewal modules, reducing manual errors and significantly improving process efficiency.",
         "Created dynamic reports and dashboards using SQL Server Reporting Services (SSRS) and optimized stored procedures for faster data retrieval.",
         "Coordinated closely with QA teams, business analysts, and stakeholders to ensure deliverables met corporate standards and compliance policies.",
@@ -174,8 +204,7 @@
       ],
       "tools": [],
       "description": [
-        "Project: BrandTracker (Leo Burnett / Coca-Cola)",
-        "Developed BrandTracker 3, a marketing campaign management platform for Coca-Cola and Fanta.",
+        "Developed BrandTracker 3 for Leo Burnett / Coca-Cola — a marketing campaign management platform for Coca-Cola and Fanta.",
         "Implemented web service APIs for campaign analytics and data visualization."
       ]
     },
@@ -200,7 +229,7 @@
       "description": [
         "Developed Bing Maps Mobile Framework for Microsoft (Windows Mobile 6.x).",
         "Created SEO Report Tool for Microsoft's Skyrocket program.",
-        "Built AWS Web Manager, a tool for scheduling EC2 events (Start/Stop/Restart)."
+        "Built AWS Web Manager, a tool for scheduling EC2 events (start/stop/restart)."
       ]
     },
     {
@@ -220,13 +249,84 @@
       ],
       "tools": [],
       "description": [
-        "Designed and developed Game Studio in C#, a proprietary engine for GBA/Nintendo DS.",
+        "Designed and developed Game Studio in C#, a proprietary engine for GBA / Nintendo DS.",
         "Created Ecovolution, an educational RPG promoting environmental awareness.",
         "Contributed to multiple outsourced game projects for Digital Blue."
       ]
     }
   ],
   "projects": [
+    {
+      "id": "proj_cifra",
+      "name": "Cifra",
+      "year": "2025 – Present",
+      "description": "Independent SaaS ERP for independent professionals in Costa Rica. Cifra covers electronic invoicing (fully compliant with Hacienda v4.4, the CR tax authority's e-invoicing standard), clients, collections, and finance. Three pricing tiers target solo professionals, growing practices, and clinics. I build and run it solo: product, design, engineering, and ops. Tagline: \"Menos papeleo. Más trabajo real.\" In final stages before public launch at cifracr.com.",
+      "technologies": [
+        "TypeScript",
+        "React",
+        "Vite",
+        "Tailwind",
+        "Node.js",
+        "PostgreSQL",
+        "Monorepo"
+      ],
+      "link": "https://cifracr.com",
+      "type": "Independent Product"
+    },
+    {
+      "id": "proj_region_gamer",
+      "name": "Región Gamer",
+      "year": "2026 – Present",
+      "description": "Multi-country event-management and gamification platform for gaming conventions across Latin America (Costa Rica, Mexico, Panama, Nicaragua, Dominican Republic). TypeScript monorepo with a Fastify API, a React admin, and a React Native app. Full gamification engine (points, levels, 5 tiers, achievements, quests), HMAC-signed anti-cheat QR system, real-time dashboards, and an event simulator. 365/365 tests passing; stress-tested at 8,873 req/s across 2,000 concurrent connections. Built at Studio Insert Coin for The Road Tech; first deployment at MegaCon Costa Rica, May 2026.",
+      "technologies": [
+        "TypeScript",
+        "Fastify",
+        "React",
+        "React Native",
+        "Prisma",
+        "PostgreSQL",
+        "Redis",
+        "BullMQ",
+        "Expo",
+        "Tailwind"
+      ],
+      "link": "https://app.regiongamer.com",
+      "type": "Platform / Studio Project",
+      "featured": true
+    },
+    {
+      "id": "proj_siyachange",
+      "name": "SiyaChange",
+      "year": "2024 – Present",
+      "description": "Multi-tenant SaaS Change Impact Assessment (CIA) platform. Organizations upload documents (PDF, DOCX, Excel, audio) and an OpenAI-powered copilot generates structured impact assessments across People, Process, Technology, and Data categories. Includes collaboration (comments, action items, audit trails), interactive dashboards shareable with external stakeholders (no login required), role-based access, and Stripe subscriptions. Built for a UK-based founder as an ongoing client engagement with equity participation.",
+      "technologies": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Tailwind",
+        "Fastify",
+        "Prisma",
+        "PostgreSQL",
+        "OpenAI",
+        "Stripe",
+        "Docker"
+      ],
+      "link": "https://siyachange.com/",
+      "type": "Client Engagement"
+    },
+    {
+      "id": "proj_twinsoul",
+      "name": "TwinSoulMatch",
+      "year": "2024 – Present",
+      "description": "Personal indie product, currently in active development. TwinSoulMatch V2 is a monorepo rebuild of a spiritual astrology compatibility platform. Analyzes two people's birth data across four classification channels (Twin Flame, Soulmate, Karmic, Past Life) using Western synastry, Ba Zi, numerology, and MBTI.",
+      "technologies": [
+        "TypeScript",
+        "React",
+        "Node.js"
+      ],
+      "link": "",
+      "type": "Personal Product"
+    },
     {
       "id": "proj1759797478690",
       "name": "Magic Paws",
@@ -239,7 +339,7 @@
         "Suno"
       ],
       "link": "https://magicpawsmusic.com/en",
-      "type": "Web Development"
+      "type": "Creative AI"
     },
     {
       "id": "proj1",
@@ -297,16 +397,19 @@
       "TypeScript",
       "JavaScript",
       "React",
+      "React Native",
+      "Next.js",
       "Node.js",
+      "Fastify",
+      "Prisma",
       "SQL",
       "PostgreSQL",
+      "Redis",
+      "Angular",
       "Azure",
       "AWS",
-      "Angular",
-      "NextJs",
-      "Cursor",
-      "DevOps",
-      "QA"
+      "Claude Code",
+      "AI / LLM integrations"
     ],
     "gameAndCreativeTech": [
       "Phaser",
@@ -314,16 +417,17 @@
       "Unreal Engine",
       "Unity",
       "ChatGPT",
+      "Sora / Veo3 / Suno",
       "Adobe Suite",
-      "Da Vinci Resolve"
+      "DaVinci Resolve"
     ],
     "productAndManagement": [
-      "Agile/Scrum",
+      "Product Roadmapping",
+      "Team Leadership",
+      "Agile / Scrum",
       "Jira",
       "Figma",
       "Confluence",
-      "Product Roadmapping",
-      "Team Leadership",
       "Notion"
     ]
   }

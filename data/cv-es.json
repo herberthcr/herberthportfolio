@@ -5,15 +5,45 @@
     "email": "herberth.castro@gmail.com",
     "phone": "+506 88372454",
     "location": "Costa Rica",
-    "summary": "Desarrollador de software y líder de producto con más de 20 años de experiencia en el diseño y entrega de aplicaciones web, videojuegos y sistemas empresariales escalables para compañías globales.\nPoseo una sólida formación técnica en C#, React, Angular, Node.js, TypeScript y bases de datos SQL, combinada con una comprobada experiencia en gestión de producto, diseño UX y liderazgo de equipos ágiles.\n\nDestaco por mi capacidad para conectar la visión creativa con la ejecución técnica, liderando proyectos desde la conceptualización hasta el despliegue en entornos remotos y multiculturales.\nFortalezas clave: visión de producto, diseño de arquitectura, mentoría de equipos, resolución creativa de problemas y desarrollo full-stack.",
+    "tagline": "Veintidós años construyendo software, desde juegos live-service hasta sistemas empresariales.",
+    "summary": "Lidero equipos de producto full-stack y sigo escribiendo código en producción. En veintidós años he entregado plataformas SaaS, juegos live-service y herramientas creativas para estudios en tres continentes. Me importa el gusto, la velocidad y construir sistemas en los que el usuario no tiene que pensar.\n\nConecto la visión creativa con la ejecución técnica, liderando proyectos desde la conceptualización hasta el lanzamiento en entornos remotos y multiculturales.\n\nFortalezas clave: visión de producto, diseño de arquitectura, mentoría de equipos, resolución creativa de problemas y desarrollo full-stack.",
     "social": {
       "linkedin": "https://www.linkedin.com/in/herberth-castro-b8b66814/",
-      "github": " https://github.com/herberthcr",
+      "github": "https://github.com/herberthcr",
       "website": "https://herberthcastro.com",
       "portfolio": "https://www.behance.net/gallery/224453817/Games-Development-Marketing"
     }
   },
   "experience": [
+    {
+      "id": "exp_freelance",
+      "title": "Desarrollador Independiente / Consultor de Producto",
+      "company": "Freelance",
+      "location": "Costa Rica · Remoto",
+      "startDate": "Oct 2024",
+      "endDate": "Presente",
+      "website": "cifracr.com",
+      "technologies": [
+        "Next.js",
+        "TypeScript",
+        "React",
+        "Node.js",
+        "PostgreSQL",
+        "Claude Code",
+        "OpenAI",
+        "Integraciones IA / LLM"
+      ],
+      "tools": [],
+      "description": [
+        "Diseño, construyo y despliego productos web de principio a fin: producto, diseño, ingeniería y operaciones.",
+        "Desarrollador full-stack y arquitecto de la solución en Región Gamer, en mi studio Insert Coin, para The Road Tech. Plataforma multi-país de gestión de eventos con gamificación; primer despliegue en MegaCon Costa Rica, mayo 2026.",
+        "Productos personales: Cifra (cifracr.com) y TwinSoulMatch, ambos en desarrollo activo y cerca del lanzamiento.",
+        "Colaboración con un founder del Reino Unido construyendo SiyaChange, una colaboración en curso con participación accionaria.",
+        "Senior developer / contractor para Technical Toolboxes (technicaltoolboxes.com), plataforma SaaS para la industria de pipelines usada por 19 de los 20 operadores más grandes de Norteamérica.",
+        "Consultoría de software y producto para instituciones del gobierno de Costa Rica, incluyendo MINAE y GOAP.",
+        "Trabajo hands-on profundo con herramientas modernas de IA (Claude Code, ChatGPT, modelos generativos) integradas en flujos de producto."
+      ]
+    },
     {
       "id": "exp1",
       "title": "Director de Producto / Desarrollador Principal",
@@ -30,6 +60,8 @@
         "PostgreSQL",
         "Unreal Engine",
         "RXDB",
+        "Figma",
+        "Adobe Suite",
         "AWS",
         "Power BI"
       ],
@@ -41,6 +73,7 @@
       ],
       "description": [
         "Lideré el desarrollo de productos para múltiples plataformas de gaming en vivo (UI, sistemas de streaming, estudios de croma 3D, herramientas de back-office).",
+        "Entregué productos de gaming en vivo en mercados no tradicionales como Tailandia, China e India, junto con mercados establecidos en Europa y Estados Unidos.",
         "Encabecé una renovación completa de todos los productos HTML5, modernizando UX y rendimiento.",
         "Desarrollé una herramienta de análisis web en React para monitorear KPIs de streaming y uso.",
         "Supervisé equipos multifuncionales y hojas de ruta de productos en varias ubicaciones de estudios."
@@ -68,7 +101,7 @@
       ],
       "tools": [],
       "description": [
-        "Desempeñé el rol de Desarrollador Líder en el proyecto ECOM Agro-Industrial (Suiza), una empresa multinacional de comercio (café, cacao y algodón) con más de 40 oficinas en todo el mundo, trabajando dentro de equipos Ágiles internacionales en aplicaciones empresariales a gran escala.",
+        "Desempeñé el rol de Desarrollador Líder en el proyecto ECOM Agro-Industrial (Suiza), una empresa multinacional de comercio (café, cacao y algodón) con más de 40 oficinas en todo el mundo — trabajando dentro de equipos Ágiles internacionales en aplicaciones empresariales a gran escala.",
         "Lideré la arquitectura front-end con Angular, garantizando la reutilización de componentes, escalabilidad y optimización de rendimiento en múltiples proyectos.",
         "Colaboré directamente con product owners y arquitectos de soluciones para definir los flujos de UI/UX e integraciones API.",
         "Diseñé e implementé la aplicación web y Android SMS, un sistema global para recopilar y distribuir información agrícola entre técnicos, agricultores y cultivos en más de 35 países.",
@@ -92,7 +125,8 @@
         "TypeScript",
         "Three.js",
         "SQL",
-        "PostgreSQL"
+        "PostgreSQL",
+        "AWS"
       ],
       "tools": [],
       "description": [
@@ -145,10 +179,7 @@
       ],
       "tools": [],
       "description": [
-        "Trabajé en el proyecto Contract Management System para Wells Fargo DSSG, una aplicación web empresarial diseñada para rastrear, calcular y administrar contratos de arrendamiento de más de 10,000 sitios de cajeros automáticos (ATM) en todo Estados Unidos.",
-        "El sistema automatizó los cálculos de renta y renovaciones de contratos, integrando lógica de negocio compleja y requisitos de cumplimiento financiero.",
-        "",
-        "Lideré el ciclo completo de desarrollo del sistema, desde la recopilación de requerimientos y el diseño de la arquitectura hasta la implementación y el mantenimiento.",
+        "Lideré el ciclo completo de desarrollo del Contract Management System para Wells Fargo DSSG — una aplicación web empresarial para rastrear, calcular y administrar contratos de arrendamiento de más de 10,000 cajeros automáticos (ATM) en todo Estados Unidos.",
         "Diseñé e implementé módulos automatizados de cálculo y renovación de contratos, reduciendo errores manuales y mejorando significativamente la eficiencia operativa.",
         "Creé reportes dinámicos y paneles de control utilizando SQL Server Reporting Services (SSRS) y optimicé procedimientos almacenados para acelerar la recuperación de datos.",
         "Coordiné estrechamente con los equipos de QA, analistas de negocio y stakeholders para garantizar que las entregas cumplieran con los estándares corporativos y las políticas de cumplimiento.",
@@ -174,8 +205,7 @@
       ],
       "tools": [],
       "description": [
-        "Proyecto: BrandTracker (Leo Burnett / Coca-Cola)",
-        "Desarrollé BrandTracker 3, una plataforma de gestión de campañas de marketing para Coca-Cola y Fanta.",
+        "Desarrollé BrandTracker 3 para Leo Burnett / Coca-Cola — una plataforma de gestión de campañas de marketing para Coca-Cola y Fanta.",
         "Implementé APIs de servicios web para análisis de campañas y visualización de datos."
       ]
     },
@@ -199,7 +229,7 @@
       "tools": [],
       "description": [
         "Desarrollé Bing Maps Mobile Framework para Microsoft (Windows Mobile 6.x).",
-        "Creé herramienta de reportes SEO para el programa Skyrocket de Microsoft.",
+        "Creé una herramienta de reportes SEO para el programa Skyrocket de Microsoft.",
         "Construí AWS Web Manager, una herramienta para programar eventos EC2 (Iniciar/Detener/Reiniciar)."
       ]
     },
@@ -220,7 +250,7 @@
       ],
       "tools": [],
       "description": [
-        "Diseñé y desarrollé Game Studio en C#, un motor propietario para GBA/Nintendo DS.",
+        "Diseñé y desarrollé Game Studio en C#, un motor propietario para GBA / Nintendo DS.",
         "Creé Ecovolution, un RPG educativo que promueve la conciencia ambiental.",
         "Contribuí a múltiples proyectos de juegos tercerizados para Digital Blue."
       ]
@@ -228,10 +258,95 @@
   ],
   "projects": [
     {
+      "id": "proj_cifra",
+      "name": "Cifra",
+      "year": "2025 – Presente",
+      "description": "SaaS ERP independiente para profesionales independientes en Costa Rica. Cifra cubre facturación electrónica (cumpliendo Hacienda v4.4, el estándar de facturación del Ministerio de Hacienda CR), clientes, cobros y finanzas. Tres planes (Solo, Pro, Clínica) para profesionales individuales, consultas en crecimiento y clínicas. Lo construyo y opero en solitario: producto, diseño, ingeniería y operaciones. Tagline: «Menos papeleo. Más trabajo real.» En fases finales antes del lanzamiento público en cifracr.com.",
+      "technologies": [
+        "TypeScript",
+        "React",
+        "Vite",
+        "Tailwind",
+        "Node.js",
+        "PostgreSQL",
+        "Monorepo"
+      ],
+      "link": "https://cifracr.com",
+      "type": "Producto Independiente"
+    },
+    {
+      "id": "proj_region_gamer",
+      "name": "Región Gamer",
+      "year": "2026 – Presente",
+      "description": "Plataforma multi-país de gestión de eventos con gamificación para convenciones de gaming en Latinoamérica (Costa Rica, México, Panamá, Nicaragua, República Dominicana). Monorepo TypeScript con API Fastify, panel React y app React Native. Motor completo de gamificación (puntos, niveles, 5 tiers, achievements, quests), sistema anti-cheat con QR firmados por HMAC, dashboards en tiempo real y simulador de eventos. 365/365 tests pasando; stress testing a 8,873 req/s con 2,000 conexiones concurrentes. Construido en Studio Insert Coin para The Road Tech; primer despliegue en MegaCon Costa Rica, mayo 2026.",
+      "technologies": [
+        "TypeScript",
+        "Fastify",
+        "React",
+        "React Native",
+        "Prisma",
+        "PostgreSQL",
+        "Redis",
+        "BullMQ",
+        "Expo",
+        "Tailwind"
+      ],
+      "link": "https://app.regiongamer.com",
+      "type": "Plataforma / Proyecto de Studio",
+      "featured": true
+    },
+    {
+      "id": "proj_siyachange",
+      "name": "SiyaChange",
+      "year": "2024 – Presente",
+      "description": "Plataforma SaaS multi-tenant de Change Impact Assessment (CIA). Las organizaciones suben documentos (PDF, DOCX, Excel, audio) y un copiloto con IA (OpenAI) genera evaluaciones de impacto estructuradas en las categorías Personas, Procesos, Tecnología y Datos. Incluye colaboración (comentarios, action items, audit trails), dashboards interactivos compartibles con stakeholders externos (sin login), accesos por rol y suscripciones Stripe. Construida para un founder del Reino Unido como colaboración en curso con participación accionaria.",
+      "technologies": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Tailwind",
+        "Fastify",
+        "Prisma",
+        "PostgreSQL",
+        "OpenAI",
+        "Stripe",
+        "Docker"
+      ],
+      "link": "https://siyachange.com/",
+      "type": "Colaboración con Cliente"
+    },
+    {
+      "id": "proj_twinsoul",
+      "name": "TwinSoulMatch",
+      "year": "2024 – Presente",
+      "description": "Producto indie personal, actualmente en desarrollo activo. TwinSoulMatch V2 es un rebuild en monorepo de una plataforma de compatibilidad de astrología espiritual. Analiza los datos de nacimiento de dos personas en cuatro canales de clasificación (Twin Flame, Soulmate, Karmic, Past Life) usando sinastría occidental, Ba Zi, numerología y MBTI.",
+      "technologies": [
+        "TypeScript",
+        "React",
+        "Node.js"
+      ],
+      "link": "",
+      "type": "Producto Personal"
+    },
+    {
+      "id": "proj1759797478690",
+      "name": "Magic Paws",
+      "year": "2025",
+      "description": "En este mundo encantado, animales mágicos usan el amor, la luz y la bondad para ayudar a los niños a crecer, sanar y aprender. Con canciones, historias mágicas y aventuras divertidas, enseñan empatía, curiosidad, trabajo en equipo y alegría — una pata a la vez.",
+      "technologies": [
+        "ChatGPT",
+        "Sora",
+        "Veo3",
+        "Suno"
+      ],
+      "link": "https://magicpawsmusic.com/en",
+      "type": "IA Creativa"
+    },
+    {
       "id": "proj1",
       "name": "Ocean Speak",
       "year": "2024 – Presente",
-      "description": "Juego web submarino interactivo basado en voz para niños.\n(El demo carga lento la primera vez)",
+      "description": "Juego web submarino interactivo basado en voz para niños. (El demo carga lento la primera vez.)",
       "technologies": [
         "TypeScript",
         "React",
@@ -283,24 +398,38 @@
       "TypeScript",
       "JavaScript",
       "React",
+      "React Native",
+      "Next.js",
       "Node.js",
+      "Fastify",
+      "Prisma",
       "SQL",
       "PostgreSQL",
+      "Redis",
+      "Angular",
       "Azure",
-      "AWS"
+      "AWS",
+      "Claude Code",
+      "Integraciones IA / LLM"
     ],
     "gameAndCreativeTech": [
       "Phaser",
       "Three.js",
-      "Unreal Engine"
+      "Unreal Engine",
+      "Unity",
+      "ChatGPT",
+      "Sora / Veo3 / Suno",
+      "Adobe Suite",
+      "DaVinci Resolve"
     ],
     "productAndManagement": [
-      "Agile/Scrum",
+      "Hojas de Ruta de Producto",
+      "Liderazgo de Equipos",
+      "Agile / Scrum",
       "Jira",
       "Figma",
       "Confluence",
-      "Hojas de Ruta de Producto",
-      "Liderazgo de Equipos"
+      "Notion"
     ]
   }
 }

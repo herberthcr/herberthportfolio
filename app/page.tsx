@@ -1,326 +1,576 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { CVData } from '@/types/cv';
+import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
+import { CVData, Experience, Project } from '@/types/cv';
+
+type Lang = 'en' | 'es';
+type Theme = 'paper' | 'ink' | 'midnight';
+type TypePairing = 'editorial' | 'mono-first' | 'all-sans';
+type DisplayFont = 'fraunces' | 'sourceserif' | 'crimson' | 'instrument' | 'inter';
+
+const UI: Record<Lang, {
+  experience: string; roles: (n: number) => string;
+  projects: string; projectsAside: string;
+  education: string; languages: string;
+  skills: string; skillsCols: [string, string, string];
+  filter: string; tagsLabel: (n: number) => string;
+  all: string;
+  downloadPdf: string; getInTouch: string;
+  basedLabel: string; experienceLabel: string; contactLabel: string;
+  yearsSuffix: (n: number) => string;
+  featured: string; visitProject: string; personal: string;
+  sideWork: string;
+  admin: string; printPdf: string;
+  madeBy: string;
+  themeLabel: string; typographyLabel: string; displayFontLabel: string;
+  themes: Record<Theme, string>;
+  types: Record<TypePairing, string>;
+  darkModeLabel: string; lightModeLabel: string;
+  roleSeparator: string;
+}> = {
+  en: {
+    experience: 'Professional experience.',
+    roles: (n) => `${n} roles`,
+    projects: 'Selected projects.',
+    projectsAside: 'Side work & experiments',
+    education: 'Education.',
+    languages: 'Languages.',
+    skills: 'Skills & tools.',
+    skillsCols: ['Programming', 'Game & Creative tech', 'Product & Leadership'],
+    filter: 'Filter by technology',
+    tagsLabel: (n) => `· ${n} tags`,
+    all: 'All',
+    downloadPdf: '↓ download pdf',
+    getInTouch: '✉ get in touch',
+    basedLabel: 'Based',
+    experienceLabel: 'Experience',
+    contactLabel: 'Contact',
+    yearsSuffix: (n) => `${n} years`,
+    featured: 'Featured',
+    visitProject: 'visit project →',
+    personal: 'Personal',
+    sideWork: 'Side work & experiments',
+    admin: 'admin',
+    printPdf: 'print / pdf',
+    madeBy: 'Made by hand',
+    themeLabel: 'Theme',
+    typographyLabel: 'Body pairing',
+    displayFontLabel: 'Display font',
+    themes: { paper: 'paper', ink: 'ink', midnight: 'midnight' },
+    types: { editorial: 'Editorial', 'mono-first': 'Mono', 'all-sans': 'Sans' },
+    darkModeLabel: 'dark mode',
+    lightModeLabel: 'light mode',
+    roleSeparator: ' · ',
+  },
+  es: {
+    experience: 'Experiencia profesional.',
+    roles: (n) => `${n} roles`,
+    projects: 'Proyectos destacados.',
+    projectsAside: 'Trabajo paralelo y experimentos',
+    education: 'Educación.',
+    languages: 'Idiomas.',
+    skills: 'Habilidades y herramientas.',
+    skillsCols: ['Programación', 'Juegos y tecnología creativa', 'Producto y liderazgo'],
+    filter: 'Filtrar por tecnología',
+    tagsLabel: (n) => `· ${n} etiquetas`,
+    all: 'Todas',
+    downloadPdf: '↓ descargar pdf',
+    getInTouch: '✉ contáctame',
+    basedLabel: 'Ubicación',
+    experienceLabel: 'Experiencia',
+    contactLabel: 'Contacto',
+    yearsSuffix: (n) => `${n} años`,
+    featured: 'Destacado',
+    visitProject: 'visitar proyecto →',
+    personal: 'Personal',
+    sideWork: 'Trabajo paralelo y experimentos',
+    admin: 'admin',
+    printPdf: 'imprimir / pdf',
+    madeBy: 'Hecho a mano',
+    themeLabel: 'Tema',
+    typographyLabel: 'Tipografía',
+    displayFontLabel: 'Fuente display',
+    themes: { paper: 'papel', ink: 'tinta', midnight: 'noche' },
+    types: { editorial: 'Editorial', 'mono-first': 'Mono', 'all-sans': 'Sans' },
+    darkModeLabel: 'modo oscuro',
+    lightModeLabel: 'modo claro',
+    roleSeparator: ' · ',
+  },
+};
+
+function computeYears(experience: Experience[]): number {
+  const years = experience
+    .map((e) => {
+      const m = /(\d{4})/.exec(e.startDate);
+      return m ? parseInt(m[1], 10) : NaN;
+    })
+    .filter((y) => !isNaN(y));
+  if (!years.length) return 0;
+  const earliest = Math.min(...years);
+  return new Date().getFullYear() - earliest;
+}
+
+function splitName(full: string): { first: string; rest: string } {
+  const parts = full.trim().split(/\s+/);
+  if (parts.length === 1) return { first: parts[0], rest: '' };
+  return { first: parts[0], rest: parts.slice(1).join(' ') };
+}
 
 export default function Home() {
   const [cvData, setCvData] = useState<CVData | null>(null);
-  const [language, setLanguage] = useState<'en' | 'es'>('en');
+  const [language, setLanguage] = useState<Lang>('en');
   const [selectedTech, setSelectedTech] = useState<string | null>(null);
-  const [allTechnologies, setAllTechnologies] = useState<string[]>([]);
+  const [filterOpen, setFilterOpen] = useState(false);
+  const [theme, setTheme] = useState<Theme>('paper');
+  const [typePairing, setTypePairing] = useState<TypePairing>('editorial');
+  const [displayFont, setDisplayFont] = useState<DisplayFont>('sourceserif');
+  const [tweaksOpen, setTweaksOpen] = useState(false);
 
   useEffect(() => {
-    fetchCV(language);
+    fetch(`/api/cv/${language}`)
+      .then((r) => r.json())
+      .then((d: CVData) => setCvData(d))
+      .catch((e) => console.error(e));
   }, [language]);
 
-  const fetchCV = async (lang: 'en' | 'es') => {
-    try {
-      const response = await fetch(`/api/cv/${lang}`);
-      const data = await response.json() as CVData;
-      setCvData(data);
+  const t = UI[language];
 
-      const techs = new Set<string>();
-      data.experience.forEach((exp) => {
-        exp.technologies.forEach((tech: string) => techs.add(tech));
-      });
-      setAllTechnologies(Array.from(techs).sort());
-    } catch (error) {
-      console.error('Error fetching CV:', error);
-    }
-  };
-
-  const filteredExperience = selectedTech
-    ? cvData?.experience.filter((exp) =>
-        exp.technologies.includes(selectedTech)
-      )
-    : cvData?.experience;
-
-  const translations = {
-    en: {
-      experience: 'Professional Experience',
-      projects: 'Projects',
-      education: 'Education',
-      languages: 'Languages',
-      skills: 'Skills',
-      filter: 'Filter by Technology',
-      all: 'All',
-    },
-    es: {
-      experience: 'Experiencia Profesional',
-      projects: 'Proyectos',
-      education: 'Educación',
-      languages: 'Idiomas',
-      skills: 'Habilidades',
-      filter: 'Filtrar por Tecnología',
-      all: 'Todos',
-    },
-  };
-
-  const t = translations[language];
+  const allTech = useMemo(() => {
+    if (!cvData) return [] as string[];
+    const s = new Set<string>();
+    cvData.experience.forEach((e) => e.technologies.forEach((x) => s.add(x)));
+    return Array.from(s).sort();
+  }, [cvData]);
 
   if (!cvData) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-gray-600">Loading...</div>
+      <div className="cv-root" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh' }}>
+        <span style={{ fontFamily: 'var(--f-mono)', fontSize: 12, color: 'var(--ink-3)' }}>
+          loading…
+        </span>
       </div>
     );
   }
 
+  const p = cvData.personalInfo;
+  const { first, rest } = splitName(p.name);
+  const nameDisplay = rest
+    ? { line1: first, line2: rest }
+    : { line1: first, line2: '' };
+
+  // Match design: first name plain; last name has its "t" italicized in accent
+  // (e.g. "Cas<em>t</em>ro."). If no "t", render plain.
+  const renderFirstLine = (s: string) => s;
+  const renderLastLine = (s: string) => {
+    if (!s) return null;
+    const lower = s.toLowerCase();
+    const tIdx = lower.indexOf('t');
+    const trailing = s.endsWith('.') ? '' : '.';
+    if (tIdx === -1) {
+      return <>{s}{trailing}</>;
+    }
+    return (
+      <>
+        {s.slice(0, tIdx)}
+        <em>{s.slice(tIdx, tIdx + 1)}</em>
+        {s.slice(tIdx + 1)}
+        {trailing}
+      </>
+    );
+  };
+
+  const totalYears = computeYears(cvData.experience);
+  const matchesFilter = (e: Experience) =>
+    !selectedTech || e.technologies.includes(selectedTech);
+
+  const featured = cvData.projects.find((x) => x.featured) ?? cvData.projects[0];
+  const restProjects = featured ? cvData.projects.filter((x) => x !== featured) : [];
+
+  const tagline = p.tagline ?? p.summary.split('\n')[0];
+  const bodySummary = p.tagline ? p.summary : p.summary.split('\n').slice(1).join('\n').trim() || p.summary;
+  const availability = p.availability ?? (language === 'es' ? 'Disponible' : 'Available');
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Top Bar */}
-      <div className="bg-white border-b">
-        <div className="max-w-5xl mx-auto px-8 py-3 flex justify-between items-center">
-          <span className="text-sm font-medium text-gray-700">{cvData.personalInfo.name}</span>
-          <div className="flex items-center gap-4">
-            <Link href="/admin" className="text-xs text-gray-500 hover:text-gray-700">Admin</Link>
-            <div className="flex items-center gap-2 text-xs">
-              <button
-                onClick={() => setLanguage('en')}
-                className={language === 'en' ? 'font-bold text-gray-900' : 'text-gray-500'}
-              >
-                EN
-              </button>
-              <span className="text-gray-300">|</span>
-              <button
-                onClick={() => setLanguage('es')}
-                className={language === 'es' ? 'font-bold text-gray-900' : 'text-gray-500'}
-              >
-                ES
-              </button>
-            </div>
+    <div className="cv-root" data-theme={theme} data-type={typePairing} data-display={displayFont}>
+      {/* Top bar */}
+      <div className="topbar">
+        <div className="topbar-inner">
+          <span className="topbar-name">
+            <span className="dot" />
+            {p.name.toLowerCase()}
+          </span>
+          <div className="topbar-right">
+            <a href="#experience">{language === 'es' ? 'experiencia' : 'experience'}</a>
+            <a href="#projects">{language === 'es' ? 'proyectos' : 'projects'}</a>
+            <a href="#skills">{language === 'es' ? 'habilidades' : 'skills'}</a>
+            <span className="sep">·</span>
+            <button
+              onClick={() => setTheme(theme === 'midnight' ? 'paper' : 'midnight')}
+              aria-label={theme === 'midnight' ? t.lightModeLabel : t.darkModeLabel}
+              title={theme === 'midnight' ? t.lightModeLabel : t.darkModeLabel}
+            >
+              {theme === 'midnight' ? '☀ light' : '☾ dark'}
+            </button>
+            <span className="sep">·</span>
+            <button onClick={() => window.print()}>{t.printPdf}</button>
+            <span className="sep">·</span>
+            <Link href="/admin">{t.admin}</Link>
+            <span className="sep">·</span>
+            <button
+              onClick={() => setLanguage('en')}
+              className={language === 'en' ? 'active' : ''}
+            >EN</button>
+            <span className="sep">|</span>
+            <button
+              onClick={() => setLanguage('es')}
+              className={language === 'es' ? 'active' : ''}
+            >ES</button>
           </div>
         </div>
       </div>
 
-      <div className="max-w-5xl mx-auto px-8 py-16">
-        {/* Header */}
-        <div className="mb-16">
-          <h1 className="text-5xl font-bold text-gray-900 mb-3 tracking-tight">
-            {cvData.personalInfo.name}
-          </h1>
-          <p className="text-2xl text-gray-600 mb-6 font-light">
-            {cvData.personalInfo.title}
-          </p>
-          
-          <div className="flex items-center gap-3 text-sm text-gray-600 mb-4">
-            <span>{cvData.personalInfo.email}</span>
-            <span className="text-gray-300">•</span>
-            <span>{cvData.personalInfo.phone}</span>
-            <span className="text-gray-300">•</span>
-            <span>{cvData.personalInfo.location}</span>
-          </div>
-
-          <div className="flex gap-4 mb-8">
-            <a href={cvData.personalInfo.social.linkedin} target="_blank" rel="noopener noreferrer" 
-               className="text-sm text-gray-700 hover:text-gray-900 underline">
-              LinkedIn
-            </a>
-            <a href={cvData.personalInfo.social.github} target="_blank" rel="noopener noreferrer"
-               className="text-sm text-gray-700 hover:text-gray-900 underline">
-              GitHub
-            </a>
-            <a href={cvData.personalInfo.social.website} target="_blank" rel="noopener noreferrer"
-               className="text-sm text-gray-700 hover:text-gray-900 underline">
-              Website
-            </a>
-            <a href={cvData.personalInfo.social.portfolio} target="_blank" rel="noopener noreferrer"
-               className="text-sm text-gray-700 hover:text-gray-900 underline">
-              Portfolio
-            </a>
-          </div>
-
-          <p className="text-base text-gray-700 leading-relaxed max-w-4xl">
-            {cvData.personalInfo.summary}
-          </p>
-        </div>
-
-        {/* Technology Filter */}
-        <div className="mb-12 bg-white p-6 rounded-lg border border-gray-200">
-          <h3 className="text-sm font-semibold text-gray-700 mb-3">{t.filter}</h3>
-          <div className="flex flex-wrap gap-2">
-            <button
-              onClick={() => setSelectedTech(null)}
-              className={`px-4 py-2 text-sm rounded-md transition ${
-                selectedTech === null
-                  ? 'bg-gray-900 text-white'
-                  : 'bg-white border border-gray-300 text-gray-700 hover:border-gray-400'
-              }`}
-            >
-              {t.all}
-            </button>
-            {allTechnologies.map((tech) => (
-              <button
-                key={tech}
-                onClick={() => setSelectedTech(tech)}
-                className={`px-4 py-2 text-sm rounded-md transition ${
-                  selectedTech === tech
-                    ? 'bg-gray-900 text-white'
-                    : 'bg-white border border-gray-300 text-gray-700 hover:border-gray-400'
-                }`}
-              >
-                {tech}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Experience */}
-        <section className="mb-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8">{t.experience}</h2>
-          <div className="space-y-10">
-            {filteredExperience?.map((exp) => (
-              <div key={exp.id} className="relative pl-8 border-l-2 border-gray-200">
-                <div className="absolute w-4 h-4 bg-gray-900 rounded-full -left-[9px] top-1"></div>
-                
-                <div className="mb-3">
-                  <div className="flex justify-between items-start mb-1">
-                    <h3 className="text-xl font-bold text-gray-900">{exp.title}</h3>
-                    <span className="text-sm text-gray-500 whitespace-nowrap ml-4">
-                      {exp.startDate} - {exp.endDate}
-                    </span>
-                  </div>
-                  <p className="text-lg text-gray-700 font-medium">{exp.company}</p>
-                  {exp.website && (
-                    <a href={`https://${exp.website}`} target="_blank" rel="noopener noreferrer"
-                       className="text-sm text-gray-500 hover:text-gray-700">
-                      {exp.website}
-                    </a>
+      <main>
+        {/* Hero */}
+        <header className="hero">
+          <div className="container">
+            <div className="hero-grid">
+              <div className="hero-meta">
+                <span className="label">{t.basedLabel}</span>
+                <span className="val">{p.location}</span>
+                <span className="label">{t.experienceLabel}</span>
+                <span className="val">{t.yearsSuffix(totalYears)}</span>
+                <span className="label">{t.contactLabel}</span>
+                <span className="val">{p.email}</span>
+              </div>
+              <div>
+                <h1 className="hero-name">
+                  {renderFirstLine(nameDisplay.line1)}
+                  {nameDisplay.line2 && (
+                    <>
+                      <br />
+                      {renderLastLine(nameDisplay.line2)}
+                    </>
+                  )}
+                </h1>
+                <div className="hero-title">
+                  <span className="role">{p.title}</span>
+                  <span className="avail">{availability}</span>
+                </div>
+                <p className="hero-summary">{tagline}</p>
+                <p className="hero-body">{bodySummary}</p>
+                <div className="hero-actions">
+                  <button className="btn btn-primary" onClick={() => window.print()}>
+                    {t.downloadPdf}
+                  </button>
+                  <a className="btn" href={`mailto:${p.email}`}>{t.getInTouch}</a>
+                  {p.social.linkedin && (
+                    <a className="btn" href={p.social.linkedin} target="_blank" rel="noreferrer">linkedin ↗</a>
+                  )}
+                  {p.social.github && (
+                    <a className="btn" href={p.social.github} target="_blank" rel="noreferrer">github ↗</a>
+                  )}
+                  {p.social.portfolio && (
+                    <a className="btn" href={p.social.portfolio} target="_blank" rel="noreferrer">portfolio ↗</a>
                   )}
                 </div>
 
-                <ul className="space-y-2 mb-4">
-                  {exp.description.map((desc, idx) => (
-                    <li key={idx} className="text-sm text-gray-700 leading-relaxed flex">
-                      <span className="mr-2 text-gray-400">•</span>
-                      <span>{desc}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="flex flex-wrap gap-2">
-                  {exp.technologies.map((tech, idx) => (
-                    <span
-                      key={idx}
-                      className={`px-3 py-1 text-xs font-medium rounded ${
-                        selectedTech === tech
-                          ? 'bg-gray-900 text-white'
-                          : 'bg-gray-100 text-gray-700'
-                      }`}
-                    >
-                      {tech}
+                <div className="filter">
+                  <div
+                    className={`filter-head ${filterOpen ? 'open' : ''}`}
+                    onClick={() => setFilterOpen((v) => !v)}
+                  >
+                    <span className="lhs">
+                      <span>{t.filter}</span>
+                      <span className="count">
+                        {selectedTech ? `· ${selectedTech}` : t.tagsLabel(allTech.length)}
+                      </span>
                     </span>
-                  ))}
+                    <span className="caret">›</span>
+                  </div>
+                  <div className={`filter-body ${filterOpen ? '' : 'collapsed'}`}>
+                    <button
+                      className={`chip all ${selectedTech === null ? 'active' : ''}`}
+                      onClick={() => setSelectedTech(null)}
+                    >
+                      {t.all}
+                    </button>
+                    {allTech.map((tech) => (
+                      <button
+                        key={tech}
+                        className={`chip ${selectedTech === tech ? 'active' : ''}`}
+                        onClick={() => setSelectedTech(tech === selectedTech ? null : tech)}
+                      >
+                        {tech}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
-            ))}
+            </div>
+          </div>
+        </header>
+
+        {/* Experience */}
+        <section className="section" id="experience">
+          <div className="container">
+            <div className="section-head">
+              <span className="section-num">§ 01</span>
+              <h2 className="section-title">
+                <span>{t.experience}</span>
+                <span className="aside">{t.roles(cvData.experience.length)}</span>
+              </h2>
+            </div>
+            <div className="exp-list">
+              {cvData.experience.map((exp, i) => (
+                <article
+                  key={exp.id}
+                  className={`exp ${selectedTech && !matchesFilter(exp) ? 'dim' : ''}`}
+                >
+                  <div className="exp-meta">
+                    <span className="idx">No. {String(i + 1).padStart(2, '0')}</span>
+                    <span className="dates">{exp.startDate} — {exp.endDate}</span>
+                    <span className="loc">{exp.location}</span>
+                  </div>
+                  <div className="exp-body">
+                    <h3>{exp.title}</h3>
+                    <div className="exp-company">
+                      <span className="company-name">{exp.company}</span>
+                      {exp.website && (
+                        <>
+                          <span style={{ color: 'var(--ink-4)' }}>/</span>
+                          <a
+                            className="url"
+                            href={exp.website.startsWith('http') ? exp.website : `https://${exp.website}`}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            {exp.website} ↗
+                          </a>
+                        </>
+                      )}
+                    </div>
+                    <ul className="exp-desc">
+                      {exp.description.map((d, idx) => (
+                        <li key={idx}>{d}</li>
+                      ))}
+                    </ul>
+                    <div className="exp-tech">
+                      {exp.technologies.map((tech) => (
+                        <button
+                          key={tech}
+                          className={selectedTech === tech ? 'active' : ''}
+                          onClick={() => setSelectedTech(tech === selectedTech ? null : tech)}
+                        >
+                          {tech}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
         {/* Projects */}
         {cvData.projects.length > 0 && (
-          <section className="mb-16">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8">{t.projects}</h2>
-            <div className="space-y-8">
-              {cvData.projects.map((project) => (
-                <div key={project.id} className="bg-white p-6 rounded-lg border border-gray-200">
-                  <div className="flex justify-between items-start mb-3">
-                    <h3 className="text-xl font-bold text-gray-900">{project.name}</h3>
-                    <span className="text-sm text-gray-500">{project.year}</span>
+          <section className="section" id="projects">
+            <div className="container">
+              <div className="section-head">
+                <span className="section-num">§ 02</span>
+                <h2 className="section-title">
+                  <span>{t.projects}</span>
+                  <span className="aside">{t.projectsAside}</span>
+                </h2>
+              </div>
+
+              {featured && <FeaturedProject project={featured} t={t} />}
+
+              {restProjects.map((proj) => (
+                <article key={proj.id} className="proj-compact">
+                  <div className="exp-meta">
+                    <span className="dates">{proj.year}</span>
                   </div>
-                  <p className="text-sm text-gray-700 mb-4 leading-relaxed">{project.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.map((tech, idx) => (
-                      <span key={idx} className="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded">
-                        {tech}
-                      </span>
-                    ))}
+                  <div>
+                    <h4>{proj.name}</h4>
+                    <p>{proj.description}</p>
+                    <div className="proj-tech" style={{ marginBottom: 10 }}>
+                      {proj.technologies.map((tech) => (
+                        <span key={tech}>{tech}</span>
+                      ))}
+                    </div>
+                    {proj.link && (
+                      <a className="proj-link" href={proj.link} target="_blank" rel="noreferrer">
+                        {t.visitProject}
+                      </a>
+                    )}
                   </div>
-                  <a href={project.link} target="_blank" rel="noopener noreferrer"
-                     className="text-sm text-gray-900 hover:text-gray-700 underline font-medium">
-                    View Project →
-                  </a>
-                </div>
+                </article>
               ))}
             </div>
           </section>
         )}
 
-        {/* Two Column Section */}
-        <div className="grid md:grid-cols-2 gap-12 mb-16">
-          {/* Education */}
-          <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">{t.education}</h2>
-            <div className="space-y-6">
-              {cvData.education.map((edu) => (
-                <div key={edu.id}>
-                  <h3 className="text-base font-bold text-gray-900">{edu.degree}</h3>
-                  <p className="text-sm text-gray-700">{edu.institution}</p>
-                  <p className="text-sm text-gray-500">{edu.year}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Languages */}
-          <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">{t.languages}</h2>
-            <div className="space-y-3">
-              {cvData.languages.map((lang, idx) => (
-                <div key={idx} className="flex justify-between items-center">
-                  <span className="text-base font-medium text-gray-900">{lang.language}</span>
-                  <span className="text-sm text-gray-600">{lang.proficiency}</span>
-                </div>
-              ))}
-            </div>
-          </section>
-        </div>
-
-        {/* Skills */}
-        <section className="mb-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8">{t.skills}</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="text-sm font-semibold text-gray-700 mb-3">Programming</h3>
-              <div className="flex flex-wrap gap-2">
-                {cvData.skills.programming.map((skill, idx) => (
-                  <span key={idx} className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded">
-                    {skill}
-                  </span>
+        {/* Education + Languages */}
+        <section className="section">
+          <div className="container">
+            <div className="twocol">
+              <span className="section-num">§ 03</span>
+              <div>
+                <h3 className="subhead">{t.education}</h3>
+                {cvData.education.map((e) => (
+                  <div key={e.id} className="edu-item">
+                    <p className="deg">{e.degree}</p>
+                    <p className="inst">{e.institution}</p>
+                    <p className="yr">{e.year}</p>
+                  </div>
                 ))}
               </div>
-            </div>
-            <div>
-              <h3 className="text-sm font-semibold text-gray-700 mb-3">Game & Creative</h3>
-              <div className="flex flex-wrap gap-2">
-                {cvData.skills.gameAndCreativeTech.map((skill, idx) => (
-                  <span key={idx} className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div>
-              <h3 className="text-sm font-semibold text-gray-700 mb-3">Product & Leadership</h3>
-              <div className="flex flex-wrap gap-2">
-                {cvData.skills.productAndManagement.map((skill, idx) => (
-                  <span key={idx} className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded">
-                    {skill}
-                  </span>
+              <div>
+                <h3 className="subhead">{t.languages}</h3>
+                {cvData.languages.map((l, i) => (
+                  <div key={i} className="lang-item">
+                    <span className="l">{l.language}</span>
+                    <span className="p">{l.proficiency}</span>
+                  </div>
                 ))}
               </div>
             </div>
           </div>
         </section>
-      </div>
 
-      {/* Footer */}
-      <footer className="border-t border-gray-200 py-8 mt-16">
-        <div className="max-w-5xl mx-auto px-8 text-center text-sm text-gray-500">
-          <p>© {new Date().getFullYear()} {cvData.personalInfo.name}</p>
+        {/* Skills */}
+        <section className="section skills-section" id="skills" style={{ borderBottom: 'none' }}>
+          <div className="container">
+            <div className="section-head">
+              <span className="section-num">§ 04</span>
+              <h2 className="section-title">
+                <span>{t.skills}</span>
+              </h2>
+            </div>
+            <div className="skills-grid">
+              <span />
+              <SkillColumn title={t.skillsCols[0]} items={cvData.skills.programming} />
+              <SkillColumn title={t.skillsCols[1]} items={cvData.skills.gameAndCreativeTech} />
+              <SkillColumn title={t.skillsCols[2]} items={cvData.skills.productAndManagement} />
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="footer">
+        <div className="container">
+          <span>© {new Date().getFullYear()} · {p.name}</span>
+          <span>{t.madeBy} · {p.location}</span>
         </div>
       </footer>
+
+      {/* Tweaks */}
+      <div style={{ position: 'fixed', bottom: 24, right: 24, zIndex: 110 }}>
+        <button
+          className="btn"
+          onClick={() => setTweaksOpen((v) => !v)}
+          style={{ fontFamily: 'var(--f-mono)' }}
+          aria-label="Toggle tweaks"
+        >
+          {tweaksOpen ? '×' : '⚙'} {language === 'es' ? 'ajustes' : 'tweaks'}
+        </button>
+      </div>
+      {tweaksOpen && (
+        <div className="tweaks" style={{ display: 'block' }}>
+          <h5>{t.displayFontLabel}</h5>
+          <div className="tweaks-row tweaks-row-5">
+            {([
+              { key: 'fraunces', label: 'Fraunces' },
+              { key: 'sourceserif', label: 'Source' },
+              { key: 'crimson', label: 'Crimson' },
+              { key: 'instrument', label: 'Instrument' },
+              { key: 'inter', label: 'Inter' },
+            ] as { key: DisplayFont; label: string }[]).map((d) => (
+              <button
+                key={d.key}
+                className={displayFont === d.key ? 'active' : ''}
+                onClick={() => setDisplayFont(d.key)}
+                title={d.label}
+              >
+                {d.label}
+              </button>
+            ))}
+          </div>
+          <h5>{t.themeLabel}</h5>
+          <div className="tweaks-row">
+            {(['paper', 'ink', 'midnight'] as Theme[]).map((th) => (
+              <button
+                key={th}
+                className={theme === th ? 'active' : ''}
+                onClick={() => setTheme(th)}
+              >
+                {t.themes[th]}
+              </button>
+            ))}
+          </div>
+          <h5>{t.typographyLabel}</h5>
+          <div className="tweaks-row">
+            {(['editorial', 'mono-first', 'all-sans'] as TypePairing[]).map((tp) => (
+              <button
+                key={tp}
+                className={typePairing === tp ? 'active' : ''}
+                onClick={() => setTypePairing(tp)}
+              >
+                {t.types[tp]}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function FeaturedProject({ project, t }: { project: Project; t: (typeof UI)[Lang] }) {
+  const parts = project.name.split(' ');
+  const first = parts[0];
+  const rest = parts.slice(1).join(' ');
+  return (
+    <article className="proj-hero">
+      <div className="exp-meta">
+        <span className="idx">{t.featured}</span>
+        <span className="dates">{project.year}</span>
+        <span className="loc">{t.personal}</span>
+      </div>
+      <div>
+        <div className="proj-visual featured">
+          <span className="label">{project.name.toLowerCase()}.preview</span>
+        </div>
+        <h3>
+          <em>{first}</em>{rest ? ` ${rest}` : ''}
+        </h3>
+        <p className="proj-desc">{project.description}</p>
+        <div className="proj-tech">
+          {project.technologies.map((tech) => (
+            <span key={tech}>{tech}</span>
+          ))}
+        </div>
+        {project.link && (
+          <a className="proj-link" href={project.link} target="_blank" rel="noreferrer">
+            {t.visitProject}
+          </a>
+        )}
+      </div>
+    </article>
+  );
+}
+
+function SkillColumn({ title, items }: { title: string; items: string[] }) {
+  return (
+    <div className="skill-col">
+      <h4>{title}</h4>
+      <div className="skill-list">
+        {items.map((s) => (
+          <span key={s}>{s}</span>
+        ))}
+      </div>
     </div>
   );
 }

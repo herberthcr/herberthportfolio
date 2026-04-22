@@ -14,6 +14,8 @@ export interface PersonalInfo {
   phone: string;
   location: string;
   summary: string;
+  tagline?: string;
+  availability?: string;
   social: {
     linkedin: string;
     github: string;
@@ -42,7 +44,8 @@ export interface Project {
   description: string;
   technologies: string[];
   link: string;
-  type: string;
+  type?: string;
+  featured?: boolean;
 }
 
 export interface Education {
