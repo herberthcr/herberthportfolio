@@ -34,8 +34,11 @@
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   min-height: 100vh;
+  overflow-x: hidden;
   transition: background 0.3s, color 0.3s;
 }
+
+.cv-root iframe { max-width: 100%; }
 
 .cv-root[data-theme="ink"] {
   --bg: oklch(0.94 0.008 80);
@@ -818,4 +821,11 @@
     grid-template-columns: 1fr !important;
   }
   .cv-root .section.skills-section .section-title { grid-column: auto; }
+
+  /* Topbar: wrap the many links on mobile so nothing forces horizontal scroll */
+  .cv-root .topbar-inner { padding: 12px 24px; flex-wrap: wrap; gap: 8px 12px; }
+  .cv-root .topbar-right { gap: 10px 14px; flex-wrap: wrap; font-size: 11px; }
+
+  /* Hero name can overflow at 56px on narrow screens; shrink floor */
+  .cv-root .hero-name { font-size: clamp(44px, 12vw, 72px); word-break: break-word; }
 }
