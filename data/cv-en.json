@@ -37,7 +37,7 @@
       "description": [
         "Designing, building, and shipping web products end to end: product, design, engineering, and ops.",
         "Full-stack developer and solution architect on Región Gamer at my studio, Insert Coin, for The Road Tech. A multi-country event-management platform with gamification; first deployment at MegaCon Costa Rica, May 2026.",
-        "Personal products: Cifra (cifracr.com) and TwinSoulMatch, both in active development and approaching launch.",
+        "Personal products: Cifra (cifracr.com), now live, and TwinSoulMatch, in active development.",
         "Client engagement with a UK-based founder building SiyaChange, an ongoing collaboration with equity participation.",
         "Senior developer / contractor for Technical Toolboxes (technicaltoolboxes.com), a pipeline-industry SaaS platform used by 19 of the top 20 North American pipeline operators.",
         "Software and product consulting for Costa Rican government institutions, including MINAE and GOAP.",
@@ -260,7 +260,7 @@
       "id": "proj_cifra",
       "name": "Cifra",
       "year": "2025 – Present",
-      "description": "Independent SaaS ERP for independent professionals in Costa Rica. Cifra covers electronic invoicing (fully compliant with Hacienda v4.4, the CR tax authority's e-invoicing standard), clients, collections, and finance. Three pricing tiers target solo professionals, growing practices, and clinics. I build and run it solo: product, design, engineering, and ops. Tagline: \"Menos papeleo. Más trabajo real.\" In final stages before public launch at cifracr.com.",
+      "description": "Independent SaaS ERP for independent professionals in Costa Rica. Cifra covers electronic invoicing (compliant with Hacienda v4.4, the CR Ministry of Finance's e-invoicing standard), clients, collections, and finance. Multiple plans and verticals for professionals across different fields, growing practices, clinics, and more. Personal project where I handle product, design, engineering, and ops.",
       "technologies": [
         "TypeScript",
         "React",
@@ -271,7 +271,8 @@
         "Monorepo"
       ],
       "link": "https://cifracr.com",
-      "type": "Independent Product"
+      "type": "Independent Product",
+      "featured": true
     },
     {
       "id": "proj_region_gamer",
@@ -291,8 +292,7 @@
         "Tailwind"
       ],
       "link": "https://app.regiongamer.com",
-      "type": "Platform / Studio Project",
-      "featured": true
+      "type": "Platform / Studio Project"
     },
     {
       "id": "proj_siyachange",
@@ -318,7 +318,7 @@
       "id": "proj_twinsoul",
       "name": "TwinSoulMatch",
       "year": "2024 – Present",
-      "description": "Personal indie product, currently in active development. TwinSoulMatch V2 is a monorepo rebuild of a spiritual astrology compatibility platform. Analyzes two people's birth data across four classification channels (Twin Flame, Soulmate, Karmic, Past Life) using Western synastry, Ba Zi, numerology, and MBTI.",
+      "description": "Personal product, currently in active development. TwinSoulMatch is a spiritual astrology compatibility platform. Analyzes two people's birth data across four classification channels (Twin Flame, Soulmate, Karmic, Past Life) using Western synastry, Ba Zi, numerology, and MBTI.",
       "technologies": [
         "TypeScript",
         "React",
@@ -345,7 +345,7 @@
       "id": "proj1",
       "name": "Ocean Speak",
       "year": "2024 – Present",
-      "description": "Interactive speech-based underwater web game for children.",
+      "description": "Interactive speech-based underwater web game for children. The demo takes a while to fully load on the first visit.",
       "technologies": [
         "TypeScript",
         "React",

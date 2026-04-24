@@ -1,0 +1,214 @@
+/* ==============================================
+   CV — Print / PDF layout
+   Used by /cv/print/[lang] and rendered to PDF by
+   scripts/generate-pdfs.mjs via Puppeteer.
+   ============================================== */
+
+@page {
+  size: A4;
+  margin: 16mm 16mm 18mm;
+  @bottom-right {
+    content: counter(page) " / " counter(pages);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 8pt;
+    color: #999;
+  }
+}
+
+/* Clear the app shell backgrounds when printing this route. */
+html, body {
+  background: #fff !important;
+  margin: 0;
+  padding: 0;
+}
+
+.cv-print {
+  color: #111;
+  background: #fff;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  font-size: 10.5pt;
+  line-height: 1.5;
+  max-width: 190mm;
+  margin: 0 auto;
+  padding: 14mm 4mm 4mm; /* screen padding; in PDF @page margin takes over */
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---- header ---- */
+.cv-print .head { margin-bottom: 16pt; }
+.cv-print h1 {
+  font-family: "Instrument Serif", "Fraunces", "Times New Roman", serif;
+  font-weight: 400;
+  font-size: 34pt;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin: 0 0 4pt;
+}
+.cv-print .title {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 9pt;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #555;
+  margin: 0 0 10pt;
+}
+.cv-print .contact {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 9pt;
+  color: #444;
+  margin: 0 0 3pt;
+}
+.cv-print .tagline {
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+  font-size: 14pt;
+  line-height: 1.3;
+  color: #111;
+  margin: 10pt 0 8pt;
+  letter-spacing: -0.01em;
+}
+.cv-print .summary {
+  font-size: 10pt;
+  line-height: 1.55;
+  color: #222;
+  margin: 0;
+  white-space: pre-line;
+}
+
+/* ---- sections ---- */
+.cv-print h2 {
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+  font-size: 18pt;
+  letter-spacing: -0.01em;
+  margin: 20pt 0 8pt;
+  padding-bottom: 4pt;
+  border-bottom: 0.5pt solid #bbb;
+  break-after: avoid-page;
+}
+
+/* ---- experience & projects share these ---- */
+.cv-print .exp,
+.cv-print .proj {
+  break-inside: avoid-page;
+  margin-bottom: 10pt;
+}
+.cv-print .exp-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12pt;
+  margin-bottom: 3pt;
+}
+.cv-print .exp-head .role-line { flex: 1; min-width: 0; }
+.cv-print .exp-head .role {
+  font-family: "Instrument Serif", serif;
+  font-size: 13pt;
+  line-height: 1.15;
+}
+.cv-print .exp-head .company {
+  font-weight: 500;
+  color: #222;
+}
+.cv-print .exp-head .meta {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 8.5pt;
+  color: #555;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+/* bullets */
+.cv-print ul {
+  list-style: none;
+  padding: 0;
+  margin: 3pt 0 5pt;
+}
+.cv-print ul li {
+  position: relative;
+  padding-left: 10pt;
+  margin: 0 0 2pt;
+  font-size: 9.5pt;
+  line-height: 1.45;
+  color: #222;
+}
+.cv-print ul li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: #888;
+  font-family: "JetBrains Mono", monospace;
+}
+
+.cv-print .tech {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 8pt;
+  color: #666;
+  margin: 4pt 0 0;
+}
+.cv-print .proj-desc {
+  font-size: 9.5pt;
+  color: #222;
+  margin: 2pt 0 3pt;
+  line-height: 1.45;
+}
+
+/* ---- education + languages ---- */
+.cv-print .two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24pt;
+  break-inside: avoid-page;
+}
+.cv-print .edu { margin-bottom: 6pt; break-inside: avoid; }
+.cv-print .edu-deg { font-weight: 500; margin: 0 0 1pt; font-size: 10pt; }
+.cv-print .edu-meta {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 8.5pt;
+  color: #555;
+  margin: 0;
+}
+.cv-print .lang-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 10pt;
+  margin: 0 0 4pt;
+}
+.cv-print .lang-line .meta {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 8.5pt;
+  color: #555;
+}
+
+/* ---- skills ---- */
+.cv-print .skills {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16pt;
+  break-inside: avoid-page;
+}
+.cv-print .skills h4 {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 8.5pt;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #555;
+  margin: 0 0 4pt;
+  padding-bottom: 3pt;
+  border-bottom: 0.5pt solid #ccc;
+  font-weight: 500;
+}
+.cv-print .skills p {
+  font-size: 9.5pt;
+  line-height: 1.55;
+  margin: 0;
+  color: #222;
+}
+
+/* ---- links rendered as black text in print ---- */
+.cv-print a { color: inherit; text-decoration: none; }
+
+/* ---- ensure we don't inherit any of the main CV's overflow / font-variation rules ---- */
+.cv-print * { font-variation-settings: normal; }

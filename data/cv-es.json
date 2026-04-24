@@ -37,7 +37,7 @@
       "description": [
         "Diseño, construyo y despliego productos web de principio a fin: producto, diseño, ingeniería y operaciones.",
         "Desarrollador full-stack y arquitecto de la solución en Región Gamer, en mi studio Insert Coin, para The Road Tech. Plataforma multi-país de gestión de eventos con gamificación; primer despliegue en MegaCon Costa Rica, mayo 2026.",
-        "Productos personales: Cifra (cifracr.com) y TwinSoulMatch, ambos en desarrollo activo y cerca del lanzamiento.",
+        "Productos personales: Cifra (cifracr.com), ya en vivo, y TwinSoulMatch, en desarrollo activo.",
         "Colaboración con un founder del Reino Unido construyendo SiyaChange, una colaboración en curso con participación accionaria.",
         "Senior developer / contractor para Technical Toolboxes (technicaltoolboxes.com), plataforma SaaS para la industria de pipelines usada por 19 de los 20 operadores más grandes de Norteamérica.",
         "Consultoría de software y producto para instituciones del gobierno de Costa Rica, incluyendo MINAE y GOAP.",
@@ -261,7 +261,7 @@
       "id": "proj_cifra",
       "name": "Cifra",
       "year": "2025 – Presente",
-      "description": "SaaS ERP independiente para profesionales independientes en Costa Rica. Cifra cubre facturación electrónica (cumpliendo Hacienda v4.4, el estándar de facturación del Ministerio de Hacienda CR), clientes, cobros y finanzas. Tres planes (Solo, Pro, Clínica) para profesionales individuales, consultas en crecimiento y clínicas. Lo construyo y opero en solitario: producto, diseño, ingeniería y operaciones. Tagline: «Menos papeleo. Más trabajo real.» En fases finales antes del lanzamiento público en cifracr.com.",
+      "description": "SaaS ERP independiente para profesionales independientes en Costa Rica. Cifra cubre facturación electrónica (cumpliendo Hacienda v4.4, el estándar de facturación del Ministerio de Hacienda CR), clientes, cobros y finanzas. Varios planes y verticales para profesionales de distintas ramas, consultas en crecimiento y clínicas, etc. Proyecto personal donde hago producto, diseño, ingeniería y operaciones.",
       "technologies": [
         "TypeScript",
         "React",
@@ -272,7 +272,8 @@
         "Monorepo"
       ],
       "link": "https://cifracr.com",
-      "type": "Producto Independiente"
+      "type": "Producto Independiente",
+      "featured": true
     },
     {
       "id": "proj_region_gamer",
@@ -292,8 +293,7 @@
         "Tailwind"
       ],
       "link": "https://app.regiongamer.com",
-      "type": "Plataforma / Proyecto de Studio",
-      "featured": true
+      "type": "Plataforma / Proyecto de Studio"
     },
     {
       "id": "proj_siyachange",
@@ -319,7 +319,7 @@
       "id": "proj_twinsoul",
       "name": "TwinSoulMatch",
       "year": "2024 – Presente",
-      "description": "Producto indie personal, actualmente en desarrollo activo. TwinSoulMatch V2 es un rebuild en monorepo de una plataforma de compatibilidad de astrología espiritual. Analiza los datos de nacimiento de dos personas en cuatro canales de clasificación (Twin Flame, Soulmate, Karmic, Past Life) usando sinastría occidental, Ba Zi, numerología y MBTI.",
+      "description": "Producto personal, actualmente en desarrollo activo. TwinSoulMatch es una plataforma de compatibilidad de astrología espiritual. Analiza los datos de nacimiento de dos personas en cuatro canales de clasificación (Twin Flame, Soulmate, Karmic, Past Life) usando sinastría occidental, Ba Zi, numerología y MBTI.",
       "technologies": [
         "TypeScript",
         "React",
@@ -346,7 +346,7 @@
       "id": "proj1",
       "name": "Ocean Speak",
       "year": "2024 – Presente",
-      "description": "Juego web submarino interactivo basado en voz para niños. (El demo carga lento la primera vez.)",
+      "description": "Juego web submarino interactivo basado en voz para niños. El demo toma tiempo la primera vez para cargarse completo.",
       "technologies": [
         "TypeScript",
         "React",

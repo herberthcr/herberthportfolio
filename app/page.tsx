@@ -213,7 +213,7 @@ export default function Home() {
               {theme === 'midnight' ? '☀ light' : '☾ dark'}
             </button>
             <span className="sep">·</span>
-            <button onClick={() => window.print()}>{t.printPdf}</button>
+            <a href={`/cv/print/${language}`} target="_blank" rel="noreferrer">{t.printPdf}</a>
             <span className="sep">·</span>
             <Link href="/admin">{t.admin}</Link>
             <span className="sep">·</span>
@@ -260,9 +260,13 @@ export default function Home() {
                 <p className="hero-summary">{tagline}</p>
                 <p className="hero-body">{bodySummary}</p>
                 <div className="hero-actions">
-                  <button className="btn btn-primary" onClick={() => window.print()}>
+                  <a
+                    className="btn btn-primary"
+                    href={`/cv-${language}.pdf`}
+                    download={`herberth-castro-cv-${language}.pdf`}
+                  >
                     {t.downloadPdf}
-                  </button>
+                  </a>
                   <a className="btn" href={`mailto:${p.email}`}>{t.getInTouch}</a>
                   {p.social.linkedin && (
                     <a className="btn" href={p.social.linkedin} target="_blank" rel="noreferrer">linkedin ↗</a>
